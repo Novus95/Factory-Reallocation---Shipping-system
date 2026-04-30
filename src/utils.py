@@ -31,7 +31,9 @@ def load_yaml(path: str | os.PathLike) -> Dict[str, Any]:
         return yaml.safe_load(f) or {}
 
 
-def load_settings(settings_path: str | os.PathLike = "config/settings.yaml") -> Settings:
+def load_settings(settings_path: Optional[str | os.PathLike] = None) -> Settings:
+    if settings_path is None:
+        settings_path = project_root() / "config" / "settings.yaml"
     raw = load_yaml(settings_path)
     return Settings(raw=raw)
 
