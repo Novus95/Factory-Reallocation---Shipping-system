@@ -1,5 +1,14 @@
 from __future__ import annotations
 
+import os
+import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path for deployments
+root_dir = str(Path(__file__).resolve().parent.parent)
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
+
 import hashlib
 import logging
 from datetime import datetime
